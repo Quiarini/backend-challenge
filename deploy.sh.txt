@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Define o diretório onde seus arquivos Terraform estão localizados
+TERRAFORM_DIR="./terraform"
+
+# Verifica se o diretório do Terraform existe
+if [ ! -d "$TERRAFORM_DIR" ]; then
+    echo "Diretório do Terraform não encontrado: $TERRAFORM_DIR"
+    exit 1
+fi
+
+# Navega para o diretório do Terraform
+cd "$TERRAFORM_DIR" || { echo "Falha ao entrar no diretório do Terraform"; exit 1; }
+
+# Verifica a versão do Terraform
+terraform_version=$(terraform -version | head -n 1)
+echo "Versão do Terraform: $terraform_version"
+
+# Initialize o Terraform
+echo "Inicializando o Terraform..."
+terraform init
+if [ $? -ne 0 ]; then
+    echo "Falha ao inicializar o Terraform"
+    exit 1
+fi
+
+# Executa o terraform plan para ver o que será feito
+echo "Executando terraform plan (Dry Run)..."
+terraform plan -out=tfplan
+if [ $? -ne 0 ]; then
+    echo "Falha ao executar terraform plan"
+    exit 1
+fi
+
+# Aplica o plano
+echo "Aplicando o plano com terraform apply..."
+terraform apply -auto-approve tfplan
+if [ $? -ne 0 ]; then
+    echo "Falha ao aplicar o plano com terraform apply"
+    exit 1
+fi
+
+# Finaliza com sucesso
+echo "Deploy do Terraform concluído com sucesso"

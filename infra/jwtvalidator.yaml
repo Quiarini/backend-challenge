@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  title: JWT Validator API
+  description: API para validar tokens JWT. Recebe um token e retorna uma mensagem indicando se o token é válido ou não.
+  version: 1.0.0
+servers:
+  - url: http://endpoint-url/api
+    description: Servidor local para desenvolvimento
+
+paths:
+  /validate:
+    post:
+      summary: Valida um token JWT
+      description: Este endpoint valida um token JWT e retorna uma mensagem indicando se o token é válido ou não.
+      operationId: validateJwtToken
+      requestBody:
+        description: Token JWT a ser validado.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: Token JWT a ser validado.
+              required:
+                - token
+        required: true
+      responses:
+        '200':
+          description: Token JWT é válido.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: JWT is valid
+        '400':
+          description: Requisição inválida. O token pode estar ausente ou malformado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid request: Token is missing or malformed"
+        '500':
+          description: Erro interno do servidor ao validar o token JWT.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: An error occurred while validating the JWT token
+components:
+  schemas:
+    TokenRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Token JWT a ser validado.
+      required:
+        - token

@@ -1,7 +1,7 @@
-package com.demo.JWTValidator;
+package com.demo.jwtvalidator;
 
-import com.demo.JWTValidator.controller.JwtController;
-import com.demo.JWTValidator.service.JwtService;
+import com.demo.jwtvalidator.controller.JwtController;
+import com.demo.jwtvalidator.service.JwtService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,12 +5,13 @@ set -o pipefail  # Interrompe o script se um comando em um pipe falhar
 
 # Variáveis de configuração
 AWS_REGION="sa-east-1"
-ECR_REPO="your-ecr-repo"  # Nome do repositório ECR
-APPLICATION_NAME="your-java-app"  # Nome da sua aplicação
+ECR_REPO="jwt-validator-ecr"  # Nome do repositório ECR
+APPLICATION_NAME="JWTValidator"  # Nome da sua aplicação
 DOCKER_IMAGE_TAG="latest"
-API_GATEWAY_NAME="your-api-gateway"
+API_GATEWAY_NAME="jwtvalidator"
 OPENAPI_SPEC="./jwtvalidator.yaml"
 AWS_PROFILE="default"  # Nome do perfil do AWS CLI, altere conforme necessário
+AWS_ACCOUNT_ID="155314306528"
 
 # Função para autenticar na AWS
 function aws_authenticate() {
@@ -30,7 +31,7 @@ function aws_authenticate() {
 function terraform_deploy() {
     echo "Iniciando Terraform..."
 
-    cd terraform  # Direcione para o diretório do Terraform
+    cd infra  # Direcione para o diretório do Terraform
 
     echo "Executando Terraform Init..."
     terraform init
@@ -48,6 +49,7 @@ function terraform_deploy() {
 # Função para construir a aplicação Java
 function build_java_app() {
     echo "Construindo a aplicação Java com Maven..."
+    cd ../app/JWTValidator
     mvn clean package
 
     echo "Executando testes unitários..."
@@ -73,7 +75,7 @@ function build_and_push_image() {
 function deploy_to_eks() {
     echo "Realizando o deploy da imagem no EKS..."
 
-    kubectl set image deployment/$APPLICATION_NAME $APPLICATION_NAME="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:$DOCKER_IMAGE_TAG"
+    kubectl apply -f ../manifests/.
 }
 
 # Função para fazer o deploy do contrato OpenAPI no API Gateway
@@ -81,6 +83,7 @@ function deploy_openapi() {
     echo "Deploying OpenAPI contract to API Gateway..."
 
     aws apigateway import-rest-api --parameters endpointConfigurationTypes=REGIONAL --body file://$OPENAPI_SPEC --region $AWS_REGION
+polain04
 
     echo "API Gateway deployed successfully."
 }

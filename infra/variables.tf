@@ -5,26 +5,26 @@ variable "aws_region" {
 
 variable "api_gateway_name" {
   description = "Nome do API Gateway."
-  default     = "jwt-validator"
+  default     = "jwt-validator-api"
 }
 
 variable "eks_cluster_name" {
   description = "Nome do cluster EKS."
-  default     = "jwt-validator"
+  default     = "jwt-validator-cluster"
 }
 
 variable "nlb_name" {
   description = "Nome do Network Load Balancer."
-  default     = "MyNLB"
+  default     = "jwt-validator-nlb"
 }
 
 
 variable "vpc_id" {
   description = "ID da VPC"
-  default     = "vpc-0230ad20389106f29"
+  default     = ""
 }
 
 variable "vpc_id" {
   description = "ID da VPC"
-  default     = ["subnet-03493ba700fceaff4","subnet-039d5bb4e357b5d8e"]
+  default     = []
 }

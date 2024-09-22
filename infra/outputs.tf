@@ -1,11 +1,15 @@
-output "api_gateway_url" {
-  value = "${aws_api_gateway_deployment.my_api_gateway.invoke_url}/${aws_api_gateway_stage.my_stage.stage_name}"
+output "eks_cluster_name" {
+  value = module.eks.cluster_name
 }
 
 output "eks_cluster_endpoint" {
-  value = aws_eks_cluster.my_eks.endpoint
+  value = module.eks.cluster_endpoint  # Adicione isso no módulo EKS
 }
 
 output "nlb_dns_name" {
-  value = aws_lb.my_nlb.dns_name
+  value = module.nlb.nlb_dns_name
+}
+
+output "api_gateway_url" {
+  value = module.api_gateway.api_gateway_url
 }

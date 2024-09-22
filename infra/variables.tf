@@ -21,10 +21,10 @@ variable "nlb_name" {
 
 variable "vpc_id" {
   description = "ID da VPC"
-  default     = ""
+  default     = "vpc-0230ad20389106f29"
 }
 
-variable "vpc_id" {
+variable "subnet_ids" {
   description = "ID da VPC"
-  default     = []
+  default     = ["subnet-039d5bb4e357b5d8e"]
 }

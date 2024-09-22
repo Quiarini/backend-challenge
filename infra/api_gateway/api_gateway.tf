@@ -35,12 +35,6 @@ resource "aws_api_gateway_deployment" "my_api_gateway" {
   ]
 }
 
-resource "aws_api_gateway_stage" "my_stage" {
-  rest_api_id = aws_api_gateway_rest_api.my_api_gateway.id
-  stage_name  = "v1"  
-  deployment_id = aws_api_gateway_deployment.my_api_gateway.id
-}
-
 output "api_gateway_url" {
   value = "${aws_api_gateway_rest_api.my_api_gateway.execution_arn}/prod/minha-rota"
 }

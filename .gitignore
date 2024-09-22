@@ -4,5 +4,6 @@
 *.tfstate
 *.tfstate.*
 *variables*
+*.lock.hcl
 
 trust-policy.json

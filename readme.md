@@ -25,13 +25,6 @@ A arquitetura da aplicação segue um padrão baseado em microserviços e conta 
 2. **NLB (Network Load Balancer)**: Distribui as requisições entre os nós do cluster EKS, garantindo alta disponibilidade.
 3. **EKS (Elastic Kubernetes Service)**: Cluster Kubernetes que gerencia a aplicação e seus recursos, oferecendo escalabilidade e resiliência.
 
-```mermaid
-graph TD;
-    Client-->APIGateway;
-    APIGateway-->NLB;
-    NLB-->EKS;
-    EKS-->JWTValidatorService;
-
 ## ENTENDENDO A APLICAÇÃO
 
 Este serviço Java (`JwtServiceImpl`) é responsável por validar tokens JWT (JSON Web Token). Ele decodifica o token, analisa suas claims e realiza validações específicas para garantir que o token esteja em conformidade com os requisitos definidos.

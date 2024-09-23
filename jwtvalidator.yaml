@@ -60,7 +60,7 @@ paths:
       x-amazon-apigateway-integration:
         uri: http://my-nlb-873781d3a6e5989c.elb.sa-east-1.amazonaws.com/api/validate # DNS do NLB
         connectionType: VPC_LINK
-        connectionId: tg50u9  # ID do VPC Link
+        connectionId: cqf6tn  # ID do VPC Link
         httpMethod: POST
         type: http_proxy  # Tipo de integracao
         requestParameters:

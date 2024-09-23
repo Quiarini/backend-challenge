@@ -73,7 +73,7 @@ resource "aws_api_gateway_method" "my_method" {
 resource "aws_api_gateway_vpc_link" "my_vpc_link" {
   name = "my-vpc-link"
   target_arns = [
-    "arn:aws:elasticloadbalancing:sa-east-1:155314306528:loadbalancer/net/my-nlb/873781d3a6e5989c" # Substitua com o arn do seu NLB
+    var.nlb_arn
   ]
 }
 
@@ -84,7 +84,7 @@ rest_api_id = aws_api_gateway_rest_api.my_api_gateway.id
 
   integration_http_method = "POST"
   type                    = "HTTP"
-  uri                     = "http://my-nlb-873781d3a6e5989c.elb.sa-east-1.amazonaws.com" # DNS do NLB
+  uri                     = var.nlb_dns # DNS do NLB
 
   connection_type = "VPC_LINK"
   connection_id   = aws_api_gateway_vpc_link.my_vpc_link.id
@@ -95,7 +95,8 @@ resource "aws_api_gateway_deployment" "my_api_gateway" {
   stage_name  = "prod"
 
   depends_on = [
-    aws_api_gateway_method.my_method
+    aws_api_gateway_method.my_method,
+    aws_api_gateway_integration.my_integration
   ]
 }
 

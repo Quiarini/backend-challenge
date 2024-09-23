@@ -1,9 +1,1 @@
-.idea
-
-**/.terraform/*
-*.tfstate
-*.tfstate.*
-*variables*
-*.lock.hcl
-
-trust-policy.json
+terraform.tfstate

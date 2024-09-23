@@ -7,12 +7,12 @@ module "eks" {
   cluster_version = "1.30"
 
   vpc_id          = var.vpc_id
-  subnet_ids      = var.subnet_ids  # Use subnet_ids aqui
+  subnet_ids      = var.subnet_ids  
 
   eks_managed_node_groups = {
     eks_nodes = {
       ami_type       = "AL2023_x86_64_STANDARD"  # AMI para EKS
-      instance_types = ["t3.medium"]
+      instance_types = var.instance_type
 
       min_size     = 1
       max_size     = 2
@@ -38,8 +38,8 @@ resource "aws_iam_role" "node_group_role" {
         Effect = "Allow",
         Principal = {
           Service = [
-            "ec2.amazonaws.com",      # EC2 como principal
-            "eks.amazonaws.com"       # EKS como principal
+            "ec2.amazonaws.com",      
+            "eks.amazonaws.com"       
           ]
         },
         Action = "sts:AssumeRole"

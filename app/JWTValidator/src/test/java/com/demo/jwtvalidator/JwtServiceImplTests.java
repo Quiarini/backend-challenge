@@ -1,6 +1,6 @@
-package com.demo.JWTValidator;
+package com.demo.jwtvalidator;
 
-import com.demo.JWTValidator.service.JwtServiceImpl;
+import com.demo.jwtvalidator.service.JwtServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,6 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,6 +1,6 @@
-package com.demo.JWTValidator.controller;
+package com.demo.jwtvalidator.controller;
 
-import com.demo.JWTValidator.service.JwtService;
+import com.demo.jwtvalidator.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

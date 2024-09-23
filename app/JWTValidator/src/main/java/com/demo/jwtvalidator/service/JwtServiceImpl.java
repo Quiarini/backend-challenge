@@ -1,4 +1,4 @@
-package com.demo.JWTValidator.service;
+package com.demo.jwtvalidator.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

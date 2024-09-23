@@ -1,5 +1,5 @@
 FROM openjdk:21
-ADD target/jwt-validator.jar jwt-validator.jar
+ADD target/jwtvalidator-0.0.1-SNAPSHOT.jar jwtvalidator-0.0.1-SNAPSHOT.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","jwt-validator.jar"]
+ENTRYPOINT ["java","-jar","jwtvalidator-0.0.1-SNAPSHOT.jar"]

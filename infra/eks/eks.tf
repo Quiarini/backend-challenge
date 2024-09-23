@@ -12,13 +12,16 @@ module "eks" {
   eks_managed_node_groups = {
     eks_nodes = {
       ami_type       = "AL2023_x86_64_STANDARD"  # AMI para EKS
-      instance_types = ["t3.micro"]
+      instance_types = ["t3.medium"]
 
       min_size     = 1
       max_size     = 2
       desired_size = 1
     }
   }
+
+   # Configurando o endpoint público e privado
+  cluster_endpoint_public_access  = true
 
   # Segurança do Cluster
   cluster_security_group_id = aws_security_group.eks_cluster_sg.id

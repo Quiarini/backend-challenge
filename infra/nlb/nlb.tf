@@ -33,7 +33,7 @@ output "nlb_dns_name" {
 
 resource "aws_lb_target_group" "app_target_group" {
   name     = "java-app-target-group"
-  port     = 8080   # Porta em que sua aplicação Java está escutando
+  port     = 80   # Porta em que sua aplicação Java está escutando
   protocol = "TCP"  # Use "HTTP" se você quiser fazer health checks HTTP
 
   vpc_id = var.vpc_id
